@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
+// where are the tests?
 public class ChargingService {
+
+    // why not use interface?
     private final ChargingSessionRepository sessionRepository;
 
     public ChargingService(ChargingSessionRepository sessionRepository) {
@@ -21,7 +24,7 @@ public class ChargingService {
         session.setStatus(ChargingSession.ChargingStatus.IN_PROGRESS);
         session.setEnergyConsumed(0.0); // default?
 
-        return sessionRepository.save(session).then(Mono.just(session));
+        return sessionRepository.save(session).then(Mono.just(session)); // why void and no object returned? forces use of Mono.just
     }
 
     public Mono<ChargingSession> completeSession(String sessionId, double energyConsumed) {
@@ -31,6 +34,6 @@ public class ChargingService {
                     session.setEnergyConsumed(energyConsumed);
                     session.setStatus(ChargingSession.ChargingStatus.COMPLETED);
                     return sessionRepository.save(session).then(Mono.just(session));
-                });
+                }); // error handling?
     }
 }
