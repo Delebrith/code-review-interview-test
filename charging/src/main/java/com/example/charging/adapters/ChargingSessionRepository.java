@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 // no interface implemented
+// no db migration files
 public class ChargingSessionRepository {
 
     // why use entity template when we can implement R2dbcRepository?
