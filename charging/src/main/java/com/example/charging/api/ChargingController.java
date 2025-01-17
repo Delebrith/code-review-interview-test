@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/charging-sessions")
+@RequestMapping("/charging-sessions") // no prefix
+// no documentation
 public class ChargingController {
     private final ChargingService chargingService;
 
@@ -20,6 +21,7 @@ public class ChargingController {
     }
 
     @PostMapping("/{sessionId}/complete")
+    // request body? where is validation?
     public Mono<ChargingSession> completeSession(@PathVariable String sessionId, @RequestParam double energyConsumed) {
         return chargingService.completeSession(sessionId, energyConsumed);
     }

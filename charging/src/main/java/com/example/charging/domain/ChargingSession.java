@@ -1,11 +1,13 @@
 package com.example.charging.domain;
 
+// no lombok?
 public class ChargingSession {
-    public String sessionId;
-    public String stationId;
-    public String vehicleId;
+    public String sessionId; // just id?
+    public String stationId; // why not use object?
+    public String vehicleId; // why not use object?
     public ChargingStatus status;
     public Double energyConsumed; // in kWh
+    // could be an object with unit inside
 
     public String getSessionId() {
         return sessionId;
