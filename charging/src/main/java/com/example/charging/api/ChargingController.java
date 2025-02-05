@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/charging-sessions") // no prefix
+@RequestMapping("/charging-sessions") // no prefix, no versioning
 // no documentation
 public class ChargingController {
     private final ChargingService chargingService;
@@ -16,6 +16,7 @@ public class ChargingController {
     }
 
     @PostMapping
+    // request params
     public Mono<ChargingSession> startSession(@RequestParam String stationId, @RequestParam String vehicleId) {
         return chargingService.startSession(stationId, vehicleId);
     }

@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.query.Query;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@Component
+@Component // charge to repository
 // no interface implemented
 // no db migration files
 public class ChargingSessionRepository {
