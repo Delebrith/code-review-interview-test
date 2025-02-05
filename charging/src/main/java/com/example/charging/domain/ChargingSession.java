@@ -1,5 +1,6 @@
 package com.example.charging.domain;
 
+// nie widzi że to obiekt domenowy. Szuka klucza bazodanowego w domenie!
 // no lombok?
 // private!
 public class ChargingSession {
@@ -55,6 +56,7 @@ public class ChargingSession {
 
     // simply status
     // brak walidacji
+    // współdzielenie enuma - whyyyyy
     public enum ChargingStatus {
         IN_PROGRESS,
         COMPLETED,

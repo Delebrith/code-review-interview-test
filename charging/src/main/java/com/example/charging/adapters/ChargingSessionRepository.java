@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.query.Query;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@Component // charge to repository
+@Component // charge to repository +
 // no interface implemented
 // no db migration files
 public class ChargingSessionRepository {
@@ -21,11 +21,13 @@ public class ChargingSessionRepository {
 
     public Mono<ChargingSession> findById(String sessionId) {
         // no separate object for data layer with data validation
+        // widzi brak walidacji i rzeczy bazodanowych +
         return entityTemplate.select(ChargingSession.class)
                 .matching(Query.query(Criteria.where("sessionId").is(sessionId)))
                 .one();
     }
 
+    // widzi że warto zwrócić obiekt +
     public Mono<Void> save(ChargingSession session) {
         return entityTemplate.insert(session).then();
     }
