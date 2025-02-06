@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/charging-sessions") // no prefix, no versioning
+@RequestMapping("/charging-sessions") // no prefix, no versioning +
 // no documentation
 public class ChargingController {
     private final ChargingService chargingService;

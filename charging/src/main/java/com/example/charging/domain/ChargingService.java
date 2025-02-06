@@ -17,6 +17,7 @@ public class ChargingService {
         this.sessionRepository = sessionRepository;
     }
 
+    // transactional +
     public Mono<ChargingSession> startSession(String stationId, String vehicleId) {
         ChargingSession session = new ChargingSession();
         // why not use builder pattern or factory method?
@@ -25,22 +26,24 @@ public class ChargingService {
         session.setStatus(ChargingSession.ChargingStatus.IN_PROGRESS);
         session.setEnergyConsumed(0.0); // default?
 
-        return sessionRepository.save(session).then(Mono.just(session)); // why void and no object returned? forces use of Mono.just
+        return sessionRepository.save(session).then(Mono.just(session)); // why void and no object returned? forces use of Mono.just +
     }
 
-    // energy consumed od pobrania zamiast w requeście
+    // transactional +
+    // energy consumed od pobrania zamiast w requeście -
     public Mono<ChargingSession> completeSession(String sessionId, double energyConsumed) {
         return sessionRepository.findById(sessionId)
                 .flatMap(session -> {
-                    // domain method encapsulation +
+                    // domain method encapsulation
                     session.setEnergyConsumed(energyConsumed);
                     session.setStatus(ChargingSession.ChargingStatus.COMPLETED);
                     return sessionRepository.save(session).then(Mono.just(session));
-                }); // error handling?
+                }); // error handling? -
     }
 }
-// testy
-// widzi że nie ma opisu
-// zauważył brancha
-// dokumentacja
-// struktura endpointu
+// testy -
+// widzi że nie ma opisu -
+// zauważył brancha -
+// dokumentacja -
+// struktura endpointu +
+// pakiety -

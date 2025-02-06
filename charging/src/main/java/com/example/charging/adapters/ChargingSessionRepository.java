@@ -7,9 +7,10 @@ import org.springframework.data.relational.core.query.Query;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@Component // charge to repository
-// no interface implemented
+@Component // charge to repository +
+// no interface implemented +
 // no db migration files
+// loombok dla konstruktora +
 public class ChargingSessionRepository {
 
     // why use entity template when we can implement R2dbcRepository?
@@ -26,6 +27,7 @@ public class ChargingSessionRepository {
                 .one();
     }
 
+    // save nie zwraca obiektu tylko void -
     public Mono<Void> save(ChargingSession session) {
         return entityTemplate.insert(session).then();
     }
