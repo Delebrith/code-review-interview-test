@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/charging-sessions") // no prefix, no versioning
-// no documentation
+@RequestMapping("/charging-sessions") // no prefix, no versioning -
+// no documentation -
 public class ChargingController {
     private final ChargingService chargingService;
 
@@ -15,14 +15,16 @@ public class ChargingController {
         this.chargingService = chargingService;
     }
 
-    @PostMapping
+    @PostMapping // "tu powinniśmy mieć nawias" -
     // request params
+    // "dodać w request param jak to ma wyglądać. nie wiem czy automatycznie nie weźmie spring"
+    // można dodać "produces", media type +
     public Mono<ChargingSession> startSession(@RequestParam String stationId, @RequestParam String vehicleId) {
         return chargingService.startSession(stationId, vehicleId);
     }
 
     @PostMapping("/{sessionId}/complete")
-    // request body? where is validation?
+    // request body? where is validation? -
     public Mono<ChargingSession> completeSession(@PathVariable String sessionId, @RequestParam double energyConsumed) {
         return chargingService.completeSession(sessionId, energyConsumed);
     }
