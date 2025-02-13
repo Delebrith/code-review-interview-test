@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/charging-sessions") // no prefix, no versioning
-// no documentation
+// no documentation+
 public class ChargingController {
     private final ChargingService chargingService;
 
@@ -15,15 +15,16 @@ public class ChargingController {
         this.chargingService = chargingService;
     }
 
-    @PostMapping
-    // request params
+    @PostMapping // sugeruje dopisać /start do endpointu
+    // request params+
     public Mono<ChargingSession> startSession(@RequestParam String stationId, @RequestParam String vehicleId) {
         return chargingService.startSession(stationId, vehicleId);
     }
 
     @PostMapping("/{sessionId}/complete")
-    // request body? where is validation?
+    // request body?+ where is validation?+- tlyko częściowo wskazał walidacje
     public Mono<ChargingSession> completeSession(@PathVariable String sessionId, @RequestParam double energyConsumed) {
         return chargingService.completeSession(sessionId, energyConsumed);
     }
 }
+// widzi że potrzebne DTO na warstwie API

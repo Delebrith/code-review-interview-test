@@ -7,12 +7,12 @@ import org.springframework.data.relational.core.query.Query;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@Component // charge to repository
-// no interface implemented
+@Component // charge to repository +
+// no interface implemented +
 // no db migration files
 public class ChargingSessionRepository {
 
-    // why use entity template when we can implement R2dbcRepository?
+    // why use entity template when we can implement R2dbcRepository? +
     private final R2dbcEntityTemplate entityTemplate;
 
     public ChargingSessionRepository(R2dbcEntityTemplate entityTemplate) {
@@ -20,7 +20,7 @@ public class ChargingSessionRepository {
     }
 
     public Mono<ChargingSession> findById(String sessionId) {
-        // no separate object for data layer with data validation
+        // no separate object for data layer with data validation - sugeruje stworzenie osobnej klasy, nie wspomina o walidacjach
         return entityTemplate.select(ChargingSession.class)
                 .matching(Query.query(Criteria.where("sessionId").is(sessionId)))
                 .one();
