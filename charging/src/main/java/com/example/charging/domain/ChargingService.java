@@ -9,23 +9,22 @@ import reactor.core.publisher.Mono;
 // where are the tests
 public class ChargingService {
 
-    // why not use interface?
+    // why not use interface?-
     private final ChargingSessionRepository sessionRepository;
 
-    // wstrzyknięcie zależności
     public ChargingService(ChargingSessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
     }
 
     public Mono<ChargingSession> startSession(String stationId, String vehicleId) {
         ChargingSession session = new ChargingSession();
-        // why not use builder pattern or factory method?
+        // why not use builder pattern or factory method? +
         session.setStationId(stationId);
         session.setVehicleId(vehicleId);
         session.setStatus(ChargingSession.ChargingStatus.IN_PROGRESS);
-        session.setEnergyConsumed(0.0); // default?
+        session.setEnergyConsumed(0.0); // default?-
 
-        return sessionRepository.save(session).then(Mono.just(session)); // why void and no object returned? forces use of Mono.just
+        return sessionRepository.save(session).then(Mono.just(session)); // why void and no object returned? forces use of Mono.just +
     }
 
     // energy consumed od pobrania zamiast w requeście
@@ -35,8 +34,8 @@ public class ChargingService {
                     // domain method encapsulation +
                     session.setEnergyConsumed(energyConsumed);
                     session.setStatus(ChargingSession.ChargingStatus.COMPLETED);
-                    return sessionRepository.save(session).then(Mono.just(session));
-                }); // error handling?
+                    return sessionRepository.save(session).then(Mono.just(session)); // why return mono instead of an object +
+                }); // error handling?-
     }
 }
 // testy

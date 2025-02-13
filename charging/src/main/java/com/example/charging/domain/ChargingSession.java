@@ -1,16 +1,16 @@
 package com.example.charging.domain;
 
-// no lombok?
+// no lombok? +
 // private!
 public class ChargingSession {
-    // dlaczego to stringi - sugeruje UUID lub value object z session id dla klarowności
+    // dlaczego to stringi - sugeruje UUID lub value object z session id dla klarowności +
     public String sessionId; // just id?
     public String stationId; // why not use object?
     public String vehicleId; // why not use object?
     public ChargingStatus status;
     public Double energyConsumed; // in kWh
     // could be an object with unit inside
-    // sugeruje integer dla najmniejszej jednostki?
+    // czy pasuje do energy consumed +
 
     public String getSessionId() {
         return sessionId;

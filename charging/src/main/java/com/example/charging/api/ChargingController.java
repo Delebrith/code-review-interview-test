@@ -16,7 +16,8 @@ public class ChargingController {
     }
 
     @PostMapping
-    // request params
+    // walidacja +
+    // request params +
     public Mono<ChargingSession> startSession(@RequestParam String stationId, @RequestParam String vehicleId) {
         return chargingService.startSession(stationId, vehicleId);
     }
